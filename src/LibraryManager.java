@@ -7,21 +7,19 @@ public class LibraryManager {
     private static final String BOOK_FILE = "books.txt";
     private static final String MEMBER_FILE = "members.txt";
 
-    // Add Book
     public void addBook(Book book) {
         books.put(book.getBookId(), book);
         saveToFile();
         System.out.println("Book added successfully with ID: " + book.getBookId());
     }
 
-    // Add Member
+  
     public void addMember(Member member) {
         members.put(member.getMemberId(), member);
         saveToFile();
         System.out.println("Member added successfully with ID: " + member.getMemberId());
     }
 
-    // Issue Book
     public void issueBook(int bookId, int memberId) {
         Book book = books.get(bookId);
         Member member = members.get(memberId);
@@ -36,7 +34,7 @@ public class LibraryManager {
         }
     }
 
-    // Return Book
+ 
     public void returnBook(int bookId, int memberId) {
         Book book = books.get(bookId);
         Member member = members.get(memberId);
@@ -51,7 +49,7 @@ public class LibraryManager {
         }
     }
 
-    // Search Books
+   
     public void searchBooks(String keyword) {
         for (Book book : books.values()) {
             if (book.getTitle().contains(keyword) ||
@@ -62,21 +60,19 @@ public class LibraryManager {
         }
     }
 
-    // Sort Books (by title using Comparable)
     public void sortBooksByTitle() {
         List<Book> bookList = new ArrayList<>(books.values());
         Collections.sort(bookList);
         bookList.forEach(Book::displayBookDetails);
     }
 
-    // Sort Books (by author using Comparator)
+ 
     public void sortBooksByAuthor() {
         List<Book> bookList = new ArrayList<>(books.values());
         bookList.sort(Comparator.comparing(Book::getAuthor));
         bookList.forEach(Book::displayBookDetails);
     }
 
-    // File Handling
     public void saveToFile() {
         try (ObjectOutputStream bookOut = new ObjectOutputStream(new FileOutputStream(BOOK_FILE));
              ObjectOutputStream memberOut = new ObjectOutputStream(new FileOutputStream(MEMBER_FILE))) {
