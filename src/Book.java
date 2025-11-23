@@ -30,7 +30,6 @@ public class Book implements Serializable, Comparable<Book> {
     public String getCategory() { return category; }
     public boolean getIsIssued() { return isIssued; }
 
-    // Comparable: sort by title
     @Override
     public int compareTo(Book other) {
         return this.title.compareToIgnoreCase(other.title);
